@@ -12,13 +12,15 @@ html = urlopen('https://wap.baidu.com/')        # open url ,get the content
 # send it to bs4_obj
 bs4_obj = BeautifulSoup(html.read(),'html.parser')
 # find all class='ns-text' 的span 标签"span",
-tag = bs4_obj.new_tag("span")
-bs4_obj.pushTag(tag)
-# todo: it's empty,can't use
-text_list = bs4_obj.find_all(tag,attrs={'class': "ns-text"})
+# tag = bs4_obj.new_tag("span")
+# bs4_obj.pushTag(tag)
+# done: it's empty,can't use.i don't know why, maybe the tag, or str?
+# text_list = bs4_obj.find_all("a",attrs={'class': "ns-text"})
+text_list = bs4_obj.find_all("span", "ns-text")
 
 for text in text_list:
-    print('%s' % text)
+    # print('%s' % text)
+    print(text.get_text())
 html.close()
 
 
